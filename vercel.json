@@ -1,0 +1,15 @@
+{
+  "version": 2,
+  "buildCommand": "npm run build",
+  "outputDirectory": "dist",
+  "rewrites": [
+    { "source": "/api/data",           "destination": "/api/handler?route=data" },
+    { "source": "/api/config",         "destination": "/api/handler?route=config" },
+    { "source": "/api/check_alert",    "destination": "/api/handler?route=check_alert" },
+    { "source": "/api/monthly_report", "destination": "/api/handler?route=monthly_report" },
+    { "source": "/api/test_telegram",  "destination": "/api/handler?route=test_telegram" }
+  ],
+  "crons": [
+    { "path": "/api/monthly_report", "schedule": "0 2 1 * *" }
+  ]
+}
