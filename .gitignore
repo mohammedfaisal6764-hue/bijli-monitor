@@ -1,0 +1,13 @@
+# ── Python ──
+__pycache__/
+*.pyc
+venv/
+.env
+
+# ── Node / build ──
+node_modules/
+dist/
+
+# ── OS / editor ──
+.DS_Store
+Thumbs.db

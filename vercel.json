@@ -1,0 +1,20 @@
+{
+  "version": 2,
+  "buildCommand": "npm run build",
+  "outputDirectory": "dist",
+  "rewrites": [
+    { "source": "/api/data",           "destination": "/api/handler?route=data" },
+    { "source": "/api/config",         "destination": "/api/handler?route=config" },
+    { "source": "/api/check_alert",    "destination": "/api/handler?route=check_alert" },
+    { "source": "/api/daily_report",   "destination": "/api/handler?route=daily_report" },
+    { "source": "/api/monthly_report", "destination": "/api/handler?route=monthly_report" },
+    { "source": "/api/notify",         "destination": "/api/handler?route=notify" },
+    { "source": "/api/test_telegram",  "destination": "/api/handler?route=test_telegram" },
+    { "source": "/api/save_settings",  "destination": "/api/handler?route=save_settings" }
+  ],
+  "crons": [
+    { "path": "/api/daily_report",   "schedule": "0 6 * * *" },
+    { "path": "/api/monthly_report", "schedule": "0 6 1 * *" }
+  ]
+}
+

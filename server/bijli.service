@@ -1,0 +1,27 @@
+[Unit]
+Description=Bijli Monitor backend (Tuya Cloud + Telegram)
+Documentation=file://__APP_DIR__/server/DEPLOY.md
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=__USER__
+Group=__USER__
+WorkingDirectory=__APP_DIR__
+# /etc/bijli.env তে Telegram/Tuya credentials থাকবে (নাহলে ব্রাউজার-বন্ধ fallback কাজ করবে না)
+EnvironmentFile=-/etc/bijli.env
+# রিবুট করলেও ডেটা (offCount, daily/monthly ledger) থেকে যাবে
+Environment=BIJLI_DATA_DIR=__DATA_DIR__
+Environment=PYTHONUNBUFFERED=1
+ExecStart=__VENV__/bin/python __APP_DIR__/api/handler.py
+Restart=always
+RestartSec=5
+StandardOutput=journal
+StandardError=journal
+# একটু নিরাপত্তা (কড়া sandbox নয় — Tuya/Telegram-এ আউটবাউন্ড নেট দরকার)
+NoNewPrivileges=true
+PrivateTmp=true
+
+[Install]
+WantedBy=multi-user.target
